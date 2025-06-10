@@ -116,13 +116,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# terminal prompt
-#PS1="{\e[1;32m\u\e[0m \D{%H:%M} \e[1;34m\W\e[0m}\$ "
-#PS1="<\[\e[93m\]\A \[\e[38;5;207m\]\u \[\e[38;5;45m\]\W\[\e[0m\]> \[\e[2m\]$?\[\e[0m\]\$ "
-PS1="<\[\e[38;5;45m\]\W\[\e[0m\]> \[\]\$ "
-
 # custom scripts
 PATH=$PATH:~/Scripts
+
+# terminal prompt
+### PS1="{\e[1;32m\u\e[0m \D{%H:%M} \e[1;34m\W\e[0m}\$ "
+### PS1="<\[\e[93m\]\A \[\e[38;5;207m\]\u \[\e[38;5;45m\]\W\[\e[0m\]> \[\e[2m\]$?\[\e[0m\]\$ "
+PS1="<\[\e[38;5;45m\]\W\[\e[0m\]>$(currbranch) \[\]\$ "
+
+PATH=$PATH:/home/alexis/.cargo/bin/
 
 # editors
 alias ne="emacs"
@@ -140,7 +142,8 @@ alias maj="sudo apt update -y; sudo apt upgrade -y; sudo apt autoremove -y"
 alias sdn="shutdown now"
 alias extract="tar -zxvf"
 alias neo="neofetch"
-alias sync_agenda="(cd ~/epitech/tools/epitech_to_google_calendar/; date +\"sync: %d/%m/%Y - %H:%M\" > out.log; echo >> out.log; python3 main.py &>> out.log)"
+alias sync_agenda="(cd /home/alexis/epitech/tools/epitech_to_google_calendar/; date +\"sync: %d/%m/%Y - %H:%M\" > out.log; echo >> out.log; python3 main.py &>> out.log)"
+alias lst="tree -L 1"
 
 # tty
 alias set_tty_zoom="setfont /usr/lib/kbd/consolefonts/latarcyrheb-sun32.psfu.gz"
@@ -153,7 +156,7 @@ alias m="make 1> /dev/null"
 alias fc="m fclean; m clean; clear"
 alias fcm="fc;m"
 alias fcj="fc;j"
-alias mt="m tests_run"
+alias mt="make tests_run"
 alias mr="m run"
 alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)'"
 alias ccs="coding-style . . && clear && tac coding-style-reports.log && rm -f coding-style-reports.log"
@@ -161,17 +164,49 @@ alias fccs="fc;ccs"
 alias hcs="lambdananas ."
 alias pyclean="find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete"
 alias marvin='sudo -u "alexis" docker run -it -v $PWD:/test/ --workdir /test epitechcontent/epitest-docker'
+alias cdc="cd /mnt/c/Users/recha/Work/Code"
 alias linkgithub="git remote add origin "
 alias fct="fc;mt"
 alias docker-sneeze="docker system prune -a --volumes -f"
+alias bm="bear -- make"
 
-export PYTHONDONTWRITEBYTECODE=1
+#export PYTHONDONTWRITEBYTECODE=1
 export GOROOT=/usr/local/go
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+
+# man
+export MANPAGER="nvim +Man!"
+
+# fnm
+FNM_PATH="/home/alexis/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
+
+# fnm
+FNM_PATH="/home/alexis/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+complete -C /usr/bin/terraform terraform
+
+[ -f "/home/alexis/.ghcup/env" ] && . "/home/alexis/.ghcup/env" # ghcup-env
+
+
+PROMPT_COMMAND='PS1="<\[\e[38;5;45m\]\W\[\e[0m\]>$(currbranch) \[\]\$ "; if [[ "$bashrc" != "$PWD" && "$PWD" != "$HOME" && -e .bashrc ]]; then bashrc="$PWD"; . .bashrc; fi'
+
+# HLS Path
+HLS_PATH="/home/alexis/.ghcup/hls/2.9.0.1/bin/"
+export PATH="$HLS_PATH:$PATH"
+
+# Wasmer
+export WASMER_DIR="/home/alexis/.wasmer"
+[ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
