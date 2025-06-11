@@ -3,6 +3,7 @@
     },
 
     "tracked_files": [
-        "~/.bashrc"
+        "~/.bashrc",
+	"~/Scripts/currbranch"
     ]
 }
