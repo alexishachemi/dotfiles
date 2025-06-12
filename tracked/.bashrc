@@ -122,7 +122,8 @@ PATH=$PATH:~/Scripts
 # terminal prompt
 ### PS1="{\e[1;32m\u\e[0m \D{%H:%M} \e[1;34m\W\e[0m}\$ "
 ### PS1="<\[\e[93m\]\A \[\e[38;5;207m\]\u \[\e[38;5;45m\]\W\[\e[0m\]> \[\e[2m\]$?\[\e[0m\]\$ "
-PS1="<\[\e[38;5;45m\]\W\[\e[0m\]>$(currbranch) \[\]\$ "
+PS1_STR='"$VIRTUAL_ENV_PROMPT <\[\e[38;5;45m\]\W\[\e[0m\]>$(currbranch) \[\]\$ "'
+PS1=$(eval echo $PS1_STR)
 
 PATH=$PATH:/home/alexis/.cargo/bin/
 
@@ -201,7 +202,7 @@ complete -C /usr/bin/terraform terraform
 [ -f "/home/alexis/.ghcup/env" ] && . "/home/alexis/.ghcup/env" # ghcup-env
 
 
-PROMPT_COMMAND='PS1="<\[\e[38;5;45m\]\W\[\e[0m\]>$(currbranch) \[\]\$ "; if [[ "$bashrc" != "$PWD" && "$PWD" != "$HOME" && -e .bashrc ]]; then bashrc="$PWD"; . .bashrc; fi'
+PROMPT_COMMAND='PS1=$(eval echo $PS1_STR); if [[ "$bashrc" != "$PWD" && "$PWD" != "$HOME" && -e .bashrc ]]; then bashrc="$PWD"; . .bashrc; fi'
 
 # HLS Path
 HLS_PATH="/home/alexis/.ghcup/hls/2.9.0.1/bin/"
