@@ -16,4 +16,4 @@ if [[ $branch =~ ^[0-9]+- ]]; then
     branch=$(echo $branch | cut -d'-' -f1)
 fi
 
-echo " [$branch]"
+echo " $branch"

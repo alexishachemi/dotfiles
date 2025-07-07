@@ -119,13 +119,31 @@ fi
 # custom scripts
 PATH=$PATH:~/Scripts
 
+# text formatting
+
+FMT_END='\[\e[0m\]'
+
+FMT_BOLD='\[\e[1m\]'
+FMT_UNDERLINE='\[\e[4m\]'
+FMT_ITALIC='\[\e[3m\]'
+FMT_DIM='\[\e[2m\]'
+
+FMT_BLUE='\[\e[38;5;39m\]'
+FMT_GREEN='\[\e[38;5;40m\]'
+FMT_RED='\[\e[38;5;196m\]'
+FMT_CYAN='\[\e[38;5;51m\]'
+FMT_MAGENTA='\[\e[38;5;201m\]'
+FMT_YELLOW='\[\e[38;5;226m\]'
+
 # terminal prompt
 ### PS1="{\e[1;32m\u\e[0m \D{%H:%M} \e[1;34m\W\e[0m}\$ "
 ### PS1="<\[\e[93m\]\A \[\e[38;5;207m\]\u \[\e[38;5;45m\]\W\[\e[0m\]> \[\e[2m\]$?\[\e[0m\]\$ "
 PS1_STR='"$VIRTUAL_ENV_PROMPT <\[\e[38;5;45m\]\W\[\e[0m\]>$(currbranch) \[\]\$ "'
 PS1=$(eval echo $PS1_STR)
 
-PATH=$PATH:/home/alexis/.cargo/bin/
+PS1_PROMPT='\[\e[38;5;39m\]\W\[\e[0m\]\[\e[2m\]$(currbranch)\[\e[0m\] $ '
+PS1="$PS1_PROMPT"
+PROMPT_COMMAND='PS1="$PS1_PROMPT"'
 
 # editors
 alias ne="emacs"
@@ -145,6 +163,7 @@ alias extract="tar -zxvf"
 alias neo="neofetch"
 alias sync_agenda="(cd /home/alexis/epitech/tools/epitech_to_google_calendar/; date +\"sync: %d/%m/%Y - %H:%M\" > out.log; echo >> out.log; python3 main.py &>> out.log)"
 alias lst="tree -L 1"
+alias gl="glow"
 
 # tty
 alias set_tty_zoom="setfont /usr/lib/kbd/consolefonts/latarcyrheb-sun32.psfu.gz"
@@ -211,3 +230,5 @@ export PATH="$HLS_PATH:$PATH"
 # Wasmer
 export WASMER_DIR="/home/alexis/.wasmer"
 [ -s "$WASMER_DIR/wasmer.sh" ] && source "$WASMER_DIR/wasmer.sh"
+
+PATH=$PATH:/home/alexis/.cargo/bin/
