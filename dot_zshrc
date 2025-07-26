@@ -1,0 +1,24 @@
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export ZSH="$HOME/.oh-my-zsh" # Oh My Zsh Installation
+ZSH_THEME="epsy"
+
+plugins=(git zsh-autosuggestions)
+
+source $ZSH/oh-my-zsh.sh
+
+if command -v micro > /dev/null 2 >&1; then
+	EDITOR="micro"
+else
+	EDITOR="nano"
+fi
+
+# aliases
+if [ -f "~/.shell_aliases" ]; then
+	source ~/.shell_aliases
+fi
+
+# custom scripts
+PATH=$PATH:~/Scripts
+
+# zoxide
+eval "$(zoxide init zsh)"

@@ -1,0 +1,47 @@
+# POSIX compliant aliases
+
+# editors
+
+alias ne="emacs"
+alias nv="nvim"
+alias nn="nano"
+alias m="micro"
+
+# customization
+
+alias aliases="$EDITOR ~/.shell_aliases"
+alias brc="$EDITOR ~/.bashrc"
+alias sbrc="source ~/.bashrc"
+alias zrc="$EDITOR ~/.zshrc"
+alias szrc="source ~/.zshrc"
+alias mconfig="$EDITOR ~/.config/micro/settings.json"
+
+# general
+
+alias cls="clear"
+if command -v z > /dev/null 2>&1; then # If zoxide is installed, alias it to 'cd'
+	alias cd="z"
+fi
+if command -v z > /dev/null 2>&1; then # If bat is installed, alias it to 'cat'
+	alias cat="bat"
+fi
+if command -v apt > /dev/null 2>&1; then # packages update alias depending on the package manager
+    alias up="sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y"
+elif command -v dnf > /dev/null 2>&1; then
+    alias up="sudo dnf upgrade -y && sudo apt autoremove -y"
+fi
+
+
+alias sdn="shutdown now"
+alias extract="tar -zxvf"
+alias lst="tree -L 1"
+alias gl="glow"
+
+# Development
+
+alias jake="make -j$(nproc)"
+alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)'"
+alias pyclean="find . -type f -name '*.py[co]' -delete -o -type d -name __pycache__ -delete"
+alias linkgithub="git remote add origin"
+alias docker-sneeze="docker system prune -a --volumes -f"
+alias bm="bear -- make"
