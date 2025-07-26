@@ -21,6 +21,8 @@ dotpush() {
 		chezmoi git -- add --all
 		chezmoi git -- commit -m "Update dotfiles"
 		chezmoi git -- push
+	else
+		echo "No new changes. (tip: 'chezmoi re-add <file>')"
 	fi
 }
 
