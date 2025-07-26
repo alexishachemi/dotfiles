@@ -13,9 +13,7 @@ else
 fi
 
 # aliases
-if [ -f "~/.shell_aliases" ]; then
-	source ~/.shell_aliases
-fi
+source ~/.shell_aliases 2> /dev/null # Ignore errors if the file is not found
 
 # custom scripts
 PATH=$PATH:~/Scripts

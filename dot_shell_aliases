@@ -1,4 +1,4 @@
-# POSIX compliant aliases
+# Aliases & Functions
 
 # editors
 
@@ -15,6 +15,14 @@ alias sbrc="source ~/.bashrc"
 alias zrc="$EDITOR ~/.zshrc"
 alias szrc="source ~/.zshrc"
 alias mconfig="$EDITOR ~/.config/micro/settings.json"
+
+dotpush() {
+	if [[ `chezmoi git -- status --porcelain` ]]; then
+		chezmoi git -- add --all
+		chezmoi git -- commit -m "Update dotfiles"
+		chezmoi git -- push
+	fi
+}
 
 # general
 
